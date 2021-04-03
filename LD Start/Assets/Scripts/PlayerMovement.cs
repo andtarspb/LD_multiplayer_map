@@ -22,6 +22,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     float jumpHeight;
 
+    float standUpHeight;
+    [SerializeField]    
+    float crouchUpHeight;
+
     bool isGrounded;
     bool isCeilinged;
     bool isCrouching;
@@ -37,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         charController = GetComponent<CharacterController>();
+
+        standUpHeight = transform.localScale.y;
     }
 
     // Update is called once per frame
@@ -109,13 +115,13 @@ public class PlayerMovement : MonoBehaviour
 
     void CrouchAction()
     {
-        transform.localScale = new Vector3(1, 0.6f, 1);
+        transform.localScale = new Vector3(1, crouchUpHeight, 1);
         isCrouching = true;
     }
 
     void StandUpAction()
     {
-        transform.localScale = new Vector3(1, 1, 1);
+        transform.localScale = new Vector3(1, standUpHeight, 1);
         isCrouching = false;
     }
 
